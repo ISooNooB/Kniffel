@@ -14,6 +14,7 @@ Stelle sicher, dass Python 3.7 oder höher installiert ist.
 1. Repository klonen:
 ```bash
 git clone https://github.com/ISooNooB/Kniffel.git
+cd Kniffel
 cd kniffelv3
 ```
 ---
@@ -21,7 +22,7 @@ cd kniffelv3
 ## (Optional) Virtuelle Umgebung erstellen:
 
 ```bash
-python -m venv venv
+python -m venv Kinffel
 source venv/bin/activate    # auf Linux/macOS
 venv\Scripts\activate.bat   # auf Windows
 ```
