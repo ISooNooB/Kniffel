@@ -1,5 +1,5 @@
 import random
-
+from ascii_art import *
 
 
 class Kniffel:
@@ -62,8 +62,8 @@ class Kniffel:
             return 25 if (2 in counts and 3 in counts) else 0
         elif category=="10":
             straights = [set([1, 2, 3, 4]), set([2, 3, 4, 5]), set([3, 4, 5, 6])]
-            dice_set = set(wurfeln)
-            return 30 if any(st.issubset(dice_set) for st in straights) else 0
+            wurfel_set = set(wurfeln)
+            return 30 if any(st.issubset(wurfel_set) for st in straights) else 0
         elif category=="11":
             return 40 if wurfeln in [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]] else 0
         elif category=="12":
@@ -138,19 +138,28 @@ class Kniffel:
 
         wurflen = self.roll_wurfeln()
         behalten_wurfeln_haupt = []
+        behalten_wurfeln1=[]
+        behalten_wurfeln2=[]
+        behalten_wurfeln3=[]
+        num_neu_wurfel = 5
         runden = 1
 
 
 
-        # Würfel behalten
+
         # Würfel behalten
         while runden < 3:
+
             if runden == 1:
+
                 print(f"\nWurf {runden}: {wurflen}")
                 print("Um dein Zug zu überspringen drück auf 'q'")
                 behalten_Eingabe = input("Welche Würfel behatlen? (index 0-4, komma-getrennt, leer taste = alle neu): ")
                 if behalten_Eingabe.lower() == "q":
                     break
+
+
+
 
 
                 if behalten_Eingabe:
@@ -232,7 +241,7 @@ class Kniffel:
 
     def final_ergibnis(self):
         print("\n"+"-*-"*10)
-        print("SPIELENDE - ERGEBNISSE")
+        print(SPIELENDE_ERGEBNISSE)
         print("-*-"*10)
 
         player_scores=[]
@@ -243,7 +252,7 @@ class Kniffel:
 
         player_scores.sort(key=lambda  x: x[1], reverse=True)
 
-        print("\nPlantzierungen: ")
+        print("\n"+Plantzierungen)
         for i, (player, score) in enumerate(player_scores, 1):
             print(f"{i}. Platz: {player} ({score} Punkte)")
 
