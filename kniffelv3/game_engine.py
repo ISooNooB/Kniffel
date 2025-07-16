@@ -138,17 +138,17 @@ class Kniffel:
 
         wurflen = self.roll_wurfeln()
         behalten_wurfeln_haupt = []
+        num_neu_wurfel = 5
+        runden = 1
         behalten_wurfeln1=[]
         behalten_wurfeln2=[]
         behalten_wurfeln3=[]
-        num_neu_wurfel = 5
-        runden = 1
 
 
 
 
         # Würfel behalten
-        while runden < 3:
+        while runden <= 2:
 
             if runden == 1:
 
@@ -165,7 +165,7 @@ class Kniffel:
                 if behalten_Eingabe:
                     behalten_index = [int(i.strip()) for i in behalten_Eingabe.split(',') if i.strip().isdigit()]
                     behalten_wurfeln1 = [wurflen[i] for i in behalten_index if 0 <= i < len(wurflen)]
-
+                    behalten_wurfeln_haupt=(behalten_wurfeln_haupt+behalten_wurfeln1)
                     # neue würfel werfen
 
                     num_neu_wurfel = 5 - len(behalten_wurfeln1)
@@ -174,46 +174,32 @@ class Kniffel:
                 wurflen = self.roll_wurfeln(num_neu_wurfel)
                 runden += 1
 
-            if runden == 2:
-                print(f"\nWurf {runden}: {wurflen}")
-                print("Um dein Zug zu überspringen drück auf 'q'")
-                behalten_Eingabe = input("Welche Würfel behatlen? (index 0-4, komma-getrennt, leer taste = alle neu): ")
-                if behalten_Eingabe.lower() == "q":
-                    break
+                if runden == 2:
+                    if not wurflen:
+                        runden += 2
+                        break
+                    else:
+                        print(f"\nWurf {runden}: {wurflen}")
+                        print("Um dein Zug zu überspringen drück auf 'q'")
+                        behalten_Eingabe = input("Welche Würfel behatlen? (index 0-4, komma-getrennt, leer taste = alle neu): ")
+                        if behalten_Eingabe.lower() == "q":
+                            break
 
 
-                if behalten_Eingabe:
-                    behalten_index = [int(i.strip()) for i in behalten_Eingabe.split(',') if i.strip().isdigit()]
-                    behalten_wurfeln2 = [wurflen[i] for i in behalten_index if 0 <= i < len(wurflen)]
-                    behalten_wurfeln_haupt = (behalten_wurfeln1 + behalten_wurfeln2)
-                    # neue würfel werfen
+                        if behalten_Eingabe:
+                            behalten_index = [int(i.strip()) for i in behalten_Eingabe.split(',') if i.strip().isdigit()]
+                            behalten_wurfeln2 = [wurflen[i] for i in behalten_index if 0 <= i < len(wurflen)]
+                            behalten_wurfeln_haupt = (behalten_wurfeln_haupt + behalten_wurfeln2)
+                            # neue würfel werfen
 
-                    num_neu_wurfel = num_neu_wurfel - len(behalten_wurfeln2)
-                    print("Behaltene Würfel:", behalten_wurfeln_haupt)
-
-                wurflen = self.roll_wurfeln(num_neu_wurfel)
-                runden += 1
-
-            if runden == 3:
-                print(f"\nWurf {runden}: {wurflen}")
-                print("Um dein Zug zu überspringen drück auf 'q'")
-                behalten_Eingabe = input("Welche Würfel behatlen? (index 0-4, komma-getrennt, leer taste = alle neu): ")
-
-                if behalten_Eingabe.lower() == "q":
-                    break
-
-
-                if behalten_Eingabe:
-                    behalten_index = [int(i.strip()) for i in behalten_Eingabe.split(',') if i.strip().isdigit()]
-                    behalten_wurfeln3 = [wurflen[i] for i in behalten_index if 0 <= i < len(wurflen)]
-                    behalten_wurfeln_haupt = (behalten_wurfeln_haupt + behalten_wurfeln3)
-                    # neue würfel werfen
-
-                    num_neu_wurfel = num_neu_wurfel - len(behalten_wurfeln3)
-                    print("Behaltene Würfel:", behalten_wurfeln_haupt)
+                            num_neu_wurfel = num_neu_wurfel - len(behalten_wurfeln2)
+                            print("Behaltene Würfel:", behalten_wurfeln_haupt)
 
                 wurflen = self.roll_wurfeln(num_neu_wurfel)
                 runden += 1
+
+
+
             print(f"\nEndgültige Würfel: {behalten_wurfeln_haupt+wurflen}")
 
         # Kategorie auswählen
