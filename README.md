@@ -14,7 +14,7 @@ Stelle sicher, dass Python 3.7 oder höher installiert ist.
 1. Repository klonen:
 ```bash
 git clone https://github.com/ISooNooB/Kniffel
-cd kniffel
+cd kniffelv3
 ```
 ---
 
