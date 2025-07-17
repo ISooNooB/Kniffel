@@ -23,7 +23,7 @@ cd kniffelv3
 
 ```bash
 python -m venv Kinffel
-source venv/bin/activate    # auf Linux/macOS
+source Kinffel/bin/activate    # auf Linux/macOS
 venv\Scripts\activate.bat   # auf Windows
 ```
 ---
